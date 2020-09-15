@@ -24,9 +24,10 @@ jobs:
         run: |
           set -eu
           echo "$PATH"
-          #mkdir -p "${HOME}/bin"
-          #curl -f -L -o "${HOME}/bin/git-remote-hg" "https://raw.githubusercontent.com/mnauw/git-remote-hg/v1.0.0/git-remote-hg"
-          #git clone "hg::http://hg.openjdk.java.net/jdk8u/jdk8u"
+          PATH="${PATH}:${HOME}/bin"
+          mkdir -p "${HOME}/bin"
+          curl -f -L -o "${HOME}/bin/git-remote-hg" "https://raw.githubusercontent.com/mnauw/git-remote-hg/v1.0.0/git-remote-hg"
+          git clone "hg::http://hg.openjdk.java.net/jdk8u/jdk8u"
           #git branch
           #git remote --verbose show
           #echo "$( git rev-parse HEAD )" > commit_id
