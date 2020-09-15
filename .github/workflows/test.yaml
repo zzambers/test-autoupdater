@@ -28,6 +28,8 @@ jobs:
           echo "${PATH}"
           mkdir -p "${HOME}/bin"
           curl -f -L -o "${HOME}/bin/git-remote-hg" "https://raw.githubusercontent.com/mnauw/git-remote-hg/v1.0.2/git-remote-hg"
+          chmod +x "${HOME}/bin/git-remote-hg"
+          type git-remote-hg
           git clone "hg::http://hg.openjdk.java.net/jdk8u/jdk8u"
           #git branch
           #git remote --verbose show
