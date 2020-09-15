@@ -16,4 +16,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run
-        run: echo test
+        run: git branch ; git remote --verbose show ;
