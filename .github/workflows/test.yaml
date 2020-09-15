@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
         with:
-          repository: git@github.com:zzambers/test-autoupdated.git
+          repository: zzambers/test-autoupdated
           ssh-key: ${{ secrets.UPDATER_PRIV_KEY }}
           path: test-autoupdated
       - name: Run
