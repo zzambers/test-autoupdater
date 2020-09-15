@@ -22,11 +22,12 @@ jobs:
           path: test-autoupdated
       - name: Run
         run: |
-          set -eu
-          echo "$PATH"
+          set -eux
+          echo "${PATH}"
           PATH="${PATH}:${HOME}/bin"
+          echo "${PATH}"
           mkdir -p "${HOME}/bin"
-          curl -f -L -o "${HOME}/bin/git-remote-hg" "https://raw.githubusercontent.com/mnauw/git-remote-hg/v1.0.0/git-remote-hg"
+          curl -f -L -o "${HOME}/bin/git-remote-hg" "https://raw.githubusercontent.com/mnauw/git-remote-hg/v1.0.2/git-remote-hg"
           git clone "hg::http://hg.openjdk.java.net/jdk8u/jdk8u"
           #git branch
           #git remote --verbose show
