@@ -20,6 +20,7 @@ jobs:
           repository: zzambers/test-autoupdated
           ssh-key: ${{ secrets.UPDATER_PRIV_KEY }}
           path: test-autoupdated
+          fetch-depth: '0'
       - name: Run
         run: |
           set -eux
