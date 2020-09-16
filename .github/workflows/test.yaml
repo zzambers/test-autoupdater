@@ -17,8 +17,8 @@ jobs:
       - name: Downgrade git
         run: |
           git --version
-          apt-cache policy git
-          sudo apt-get install git=1:2.17.0-1ubuntu1
+          apt-cache policy git-all
+          sudo apt-get install git-all=1:2.17.0-1ubuntu1
           git --version
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
