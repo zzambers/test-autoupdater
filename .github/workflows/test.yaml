@@ -56,7 +56,7 @@ jobs:
           git config user.email github-actions@github.com
           git config remote-hg.track-branches false
           #git branch
-          #git fetch origin "refs/notes/hg:refs/notes/hg"
+          git fetch origin "refs/notes/hg:refs/notes/hg"
           #git fetch origin "jdk8u/jdk8u:jdk8u/jdk8u"
           #git fetch origin --tags
           #git remote --verbose show
