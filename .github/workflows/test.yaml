@@ -23,7 +23,11 @@ jobs:
       - name: Run
         run: |
           set -eux
+          free -h
           hg --version
+          git --version
+          apt-cache policy git
+          # https://public-inbox.org/git/20200605224342.GF6569@camp.crustytoothpaste.net/t/
           echo "${PATH}"
           PATH="${PATH}:${HOME}/bin"
           echo "${PATH}"
