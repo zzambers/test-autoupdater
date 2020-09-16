@@ -20,7 +20,6 @@ jobs:
           repository: zzambers/test-autoupdated
           ssh-key: ${{ secrets.UPDATER_PRIV_KEY }}
           path: test-autoupdated
-          fetch-depth: '0'
       - name: Run
         run: |
           set -eux
@@ -42,6 +41,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git branch
+          git fetch origin "refs/notes/hg:refs/notes/hg"
           #git remote --verbose show
           #cat ../commit_id >> generated
           #git add -A
