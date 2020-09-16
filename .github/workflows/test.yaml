@@ -55,8 +55,8 @@ jobs:
           git config user.email github-actions@github.com
           git branch
           git fetch origin "refs/notes/hg:refs/notes/hg"
-          git fetch origin "jdk8u/jdk8u:jdk8u/jdk8u"
-          git fetch origin --tags
+          #git fetch origin "jdk8u/jdk8u:jdk8u/jdk8u"
+          #git fetch origin --tags
           #git remote --verbose show
           #cat ../commit_id >> generated
           #git add -A
