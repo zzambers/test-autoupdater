@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Downgrade git
         run: |
+          # workaround for:
+          # https://public-inbox.org/git/20200605224342.GF6569@camp.crustytoothpaste.net/t/
           git --version
           apt-cache policy git
           sudo apt-get install --allow-downgrades git=1:2.25.1-1ubuntu3 git-man=1:2.25.1-1ubuntu3
@@ -33,7 +35,6 @@ jobs:
           hg --version
           git --version
           apt-cache policy git
-          # https://public-inbox.org/git/20200605224342.GF6569@camp.crustytoothpaste.net/t/
           echo "${PATH}"
           PATH="${PATH}:${HOME}/bin"
           echo "${PATH}"
