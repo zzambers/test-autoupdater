@@ -30,9 +30,10 @@ jobs:
           curl -f -L -o "${HOME}/bin/git-remote-hg" "https://raw.githubusercontent.com/mnauw/git-remote-hg/v1.0.0/git-remote-hg"
           chmod +x "${HOME}/bin/git-remote-hg"
           type git-remote-hg
-          # if curl --  | grep 404...
-          #curl -f -L -o "hg-forest-top.tar.xz" "https://github.com/zzambers/test-autoupdater/releases/download/hg-files-latest/hg-forest-top.tar.xz"
-          #tar -xJf hg-forest-top.tar.xz -C test-autoupdated/.git
+          if ! curl -s -I "https://github.com/zzambers/test-autoupdater/releases/download/hg-files-latest/hg-forest-top.tar.xz" | head -n 1 | grep -q '404 Not Found' ; then
+            curl -f -L -o "hg-forest-top.tar.xz" "https://github.com/zzambers/test-autoupdater/releases/download/hg-files-latest/hg-forest-top.tar.xz"
+            tar -xJf hg-forest-top.tar.xz -C test-autoupdated/.git
+          fi
           #git branch
           #git remote --verbose show
           #echo "$( git rev-parse HEAD )" > commit_id
@@ -57,9 +58,9 @@ jobs:
       #    files: |
       #      LICENSE.txt
       #      target/*.jar
-     #- uses: eine/tip@master
-     # with:
-     #   token: ${{ secrets.GITHUB_TOKEN }}
-     #   files: |
-     #     artifact.txt
-     #     README.md
+     - uses: eine/tip@master
+       tag: hg-files-latest
+       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: |
+          hg-forest-top.tar.xz
