@@ -49,15 +49,6 @@ jobs:
           git fetch "hg::http://hg.openjdk.java.net/jdk8u/jdk8u" "branches/default:jdk8u/jdk8u"
           popd
           tar -cJf hg-forest-top.tar.xz -C test-autoupdated/.git --exclude hg/hg hg
-      #- uses: "marvinpinto/action-automatic-releases@latest"
-      #  with:
-      #    repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      #    automatic_release_tag: "latest-hg-files"
-      #    prerelease: true
-      #    title: "Latest Hg Files"
-      #    files: |
-      #      LICENSE.txt
-      #      target/*.jar
      - uses: eine/tip@master
        tag: hg-files-latest
        with:
