@@ -23,7 +23,7 @@ jobs:
       - name: Run
         run: |
           set -eux
-          mercurial --version
+          hg --version
           echo "${PATH}"
           PATH="${PATH}:${HOME}/bin"
           echo "${PATH}"
