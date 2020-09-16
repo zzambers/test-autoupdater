@@ -50,9 +50,9 @@ jobs:
           popd
           tar -cJf hg-forest-top.tar.xz -C test-autoupdated/.git --exclude hg/hg hg
 
-     - uses: eine/tip@master
-       tag: hg-files-latest
-       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        files: |
-          hg-forest-top.tar.xz
+      - uses: eine/tip@master
+        with:
+          tag: hg-files-latest
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            hg-forest-top.tar.xz
