@@ -31,6 +31,7 @@ jobs:
           fetch-depth: '0'
       - name: Run
         run: |
+          # dummy comment
           set -eux
           free -h
           hg --version
