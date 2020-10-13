@@ -9,7 +9,19 @@ on:
       - "master"
 
 jobs:
+  test-variables:
+    steps:
+      - name: Set env
+        run: |
+          echo "RUN_NEXT=1" >> $GITHUB_ENV
+      - name: Conditional
+        if: ${{ env.RUN_NEXT == "1" }}
+        run: |
+          echo $RUN_NEXT
+          cat $GITHUB_ENV
+
   test-auto:
+    if: false
     name: "Test"
     runs-on: "ubuntu-20.04"
 
