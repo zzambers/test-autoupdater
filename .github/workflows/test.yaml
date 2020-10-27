@@ -34,10 +34,17 @@ jobs:
         run: |
           echo $RUN_NEXT
           cat $GITHUB_ENV
-      - name: Conditional failed
-        if: ${{ failed() }}
+      - name: Conditional failure
+        if: ${{ failure() }}
         run: |
           echo "failed"
+      - name: Conditional always
+        if: ${{ always() }}
+        run: |
+          echo "always"
+      - name: Normal
+        run: |
+          echo "normal"
 
   test-auto:
     if: false
