@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "RUN_NEXT=1" >> $GITHUB_ENV
       - name: Conditional
-        if: ${{ env.RUN_NEXT == "1" }}
+        if: ${{ env.RUN_NEXT == '1' }}
         run: |
           echo $RUN_NEXT
           cat $GITHUB_ENV
