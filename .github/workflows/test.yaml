@@ -34,6 +34,11 @@ jobs:
         run: |
           echo $RUN_NEXT
           cat $GITHUB_ENV
+      - name: Conditional 4
+        if: ${{ failure() && env.RUN_NEXT != '1' }}
+        run: |
+          echo $RUN_NEXT
+          cat $GITHUB_ENV
       - name: Conditional failure
         if: ${{ failure() }}
         run: |
