@@ -21,6 +21,23 @@ jobs:
         run: |
           echo $RUN_NEXT
           cat $GITHUB_ENV
+      - name: Conditional 2
+        if: ${{ env.RUN_NEXT != '1' }}
+        run: |
+          echo $RUN_NEXT
+          cat $GITHUB_ENV
+      - name: Fail
+        run: |
+          false
+      - name: Conditional 3
+        if: ${{ env.RUN_NEXT != '1' }}
+        run: |
+          echo $RUN_NEXT
+          cat $GITHUB_ENV
+      - name: Conditional failed
+        if: ${{ failed() }}
+        run: |
+          echo "failed"
 
   test-auto:
     if: false
