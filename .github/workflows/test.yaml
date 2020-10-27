@@ -30,7 +30,7 @@ jobs:
         run: |
           false
       - name: Conditional 3
-        if: ${{ env.RUN_NEXT == '1' }}
+        if: ${{ failure() && env.RUN_NEXT == '1' }}
         run: |
           echo $RUN_NEXT
           cat $GITHUB_ENV
