@@ -33,7 +33,7 @@ jobs:
           set -eux
           . ./update-funcs.sh
           pushd "hg-jdk"
-          mirror_init "hg-jdk"
+           mirror_init "hg-jdk"
           popd
           rm -rf hg-jdk/.git/hg/.hg
       - name: Cache hg repo
