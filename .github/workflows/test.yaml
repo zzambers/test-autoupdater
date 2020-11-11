@@ -9,7 +9,47 @@ on:
       - "master"
 
 jobs:
+  update-hg-jdk:
+    name: "Update mercurial JDK mirror"
+    runs-on: "ubuntu-20.04"
+    steps:
+      - name: Downgrade git
+        run: |
+          # workaround for:
+          # https://public-inbox.org/git/20200605224342.GF6569@camp.crustytoothpaste.net/t/
+          git --version
+          apt-cache policy git
+          sudo apt-get install --allow-downgrades git=1:2.25.1-1ubuntu3 git-man=1:2.25.1-1ubuntu3
+          git --version
+      - uses: actions/checkout@v2
+      - name: Checkout hg-jdk mirror
+        uses: actions/checkout@v2
+        with:
+          repository: ojdk-qa/hg-jdk
+          path: hg-jdk
+          fetch-depth: '0'
+      - name: Setup hg mappings
+        run: |
+          set -eux
+          . ./update-funcs.sh
+          pushd "hg-jdk"
+          mirror_init "hg-jdk"
+          popd
+      - name: Cache hg repo
+        uses: actions/cache@v2
+        with:
+          path: |
+            hg-jdk/.git/hg/.hg
+          key: hg-jdk-cache
+      - name: Update mirror
+        run: |
+          set -eux
+          . ./update-funcs.sh
+          setup_git_plugin
+          update_jdk_mirror "jdk/jdk11" "jdk-updates/jdk11u" "jdk-updates/jdk11u-dev" "shenandoah/jdk11"
+
   test-variables:
+    if: false
     name: "Test variables"
     runs-on: "ubuntu-20.04"
     steps:
