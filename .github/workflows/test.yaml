@@ -41,7 +41,8 @@ jobs:
         with:
           path: |
             hg-jdk/.git/hg/.hg
-          key: hg-jdk-cache
+          key: hg-jdk-cache-${{ hashFiles('hg-jdk/.git/hg/*') }}
+          restore-keys: hg-jdk-cache
       - name: Update mirror
         run: |
           set -eux
