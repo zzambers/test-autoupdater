@@ -39,16 +39,16 @@ jobs:
           find hg-jdk/.git/hg
       - name: Save original hashes
         env:
-          HG_JDK_HASH: ${{ hashFiles('hg-jdk/.git/hg/*') }}
+          HG_JDK_HASH: ${{ hashFiles('hg-jdk/.git/hg/marks*') }}
         run: |
           set -eux
-          echo "HG_JDK_HASH_ORIG=${HG_JDK_HASH}" >> $GITHUB_ENV
+          echo "HG_JDK_HASH=${HG_JDK_HASH}" >> $GITHUB_ENV
       - name: Cache hg repo
         uses: actions/cache@v2
         with:
           path: |
             hg-jdk/.git/hg/.hg
-          key: hg-jdk-cache-${{ hashFiles('hg-jdk/.git/hg/*') }}
+          key: hg-jdk-cache-${{ env.HG_JDK_HASH }}
           restore-keys: hg-jdk-cache
       - name: Update mirror
         run: |
@@ -57,7 +57,7 @@ jobs:
           setup_git_plugin
           update_jdk_mirror "jdk/jdk11" "jdk-updates/jdk11u" "jdk-updates/jdk11u-dev" "shenandoah/jdk11"
       - name: Changes
-        if: ${{ hashFiles('hg-jdk/.git/hg/*') != env.HG_JDK_HASH }}
+        if: ${{ hashFiles('hg-jdk/.git/hg/marks*') != env.HG_JDK_HASH }}
         run: |
           echo "Changes !!"
 
