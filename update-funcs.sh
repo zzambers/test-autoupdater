@@ -30,10 +30,10 @@ mirror_init() (
     archive_url_base="https://github.com/ojdk-qa/autoupdater/releases/download/hg-files-latest"
     archive_url="${archive_url_base}/${archive_name}"
     if ! curl -s -I "${archive_url}" | head -n 1 | grep -q '404 Not Found' ; then
-       if ! curl -s -I "${archive_url_base}/tmp.${archive_name}" | head -n 1 | grep -q '404 Not Found' ; then
+       #if ! curl -s -I "${archive_url_base}/tmp.${archive_name}" | head -n 1 | grep -q '404 Not Found' ; then
            # tmp file indicating archive update, should not happen
-           return 1
-       fi
+           #return 1
+       #fi
        # fetch notes generated and required by the plugin
        git fetch origin "refs/notes/hg:refs/notes/hg"
        # unpack plugin's hg data from previous run
