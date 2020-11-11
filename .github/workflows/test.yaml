@@ -36,6 +36,7 @@ jobs:
            mirror_init "hg-jdk"
           popd
           rm -rf hg-jdk/.git/hg/.hg
+          find hg-jdk/.git/hg
       - name: Cache hg repo
         uses: actions/cache@v2
         with:
