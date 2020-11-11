@@ -38,7 +38,7 @@ jobs:
           rm -rf hg-jdk/.git/hg/.hg
           find hg-jdk/.git/hg
       - name: Save original hashes
-        env: |
+        env:
           HG_JDK_HASH: ${{ hashFiles('hg-jdk/.git/hg/*') }}
         run: |
           set -eux
