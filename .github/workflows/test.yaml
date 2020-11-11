@@ -37,6 +37,12 @@ jobs:
           popd
           rm -rf hg-jdk/.git/hg/.hg
           find hg-jdk/.git/hg
+      - name: Save original hashes
+        env: |
+          HG_JDK_HASH: ${{ hashFiles('hg-jdk/.git/hg/*') }}
+        run: |
+          set -eux
+          echo "HG_JDK_HASH_ORIG=${HG_JDK_HASH}" >> $GITHUB_ENV
       - name: Cache hg repo
         uses: actions/cache@v2
         with:
@@ -50,6 +56,10 @@ jobs:
           . ./update-funcs.sh
           setup_git_plugin
           update_jdk_mirror "jdk/jdk11" "jdk-updates/jdk11u" "jdk-updates/jdk11u-dev" "shenandoah/jdk11"
+      - name: Changes
+        if: ${{ hashFiles('hg-jdk/.git/hg/*') != env.HG_JDK_HASH }}
+        run: |
+          echo "Changes !!"
 
   test-variables:
     if: false
